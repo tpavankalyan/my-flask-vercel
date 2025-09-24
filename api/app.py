@@ -11,6 +11,17 @@ GOOGLE_LOCATION = os.getenv("GOOGLE_LOCATION", "us-central1")
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://jjqkeeykvtcqjohikbtg.supabase.co")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpqcWtlZXlrdnRjcWpvaGlrYnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2MTY3MDEsImV4cCI6MjA3NDE5MjcwMX0.QUzxAIwvrSF9oIz3WGtAFIuBj5iD6aF4PbekiuNYUTE")
 
+
+import os
+
+google_creds_json = os.getenv("GOOGLE_CREDS_JSON")
+if google_creds_json:
+    with open("/tmp/cred.json", "w") as f:
+        f.write(google_creds_json)
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/cred.json"
+
+
+
 vertexai.init(project=GOOGLE_PROJECT_ID, location=GOOGLE_LOCATION)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
