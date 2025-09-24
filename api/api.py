@@ -31,5 +31,5 @@ def search():
     return jsonify({"result": "No match found"})
 
 @app.route("/")
-def hello():
+def home():
     return "VertexAI + Supabase API running on Vercel!"
